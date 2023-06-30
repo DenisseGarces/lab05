@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+    lab01:
+        build: ./
+        ports:
+           - "5000:80"
+        networks:
+           - demored
+        volumes:
+           - "vol01:/var/Lab/logs"
+        depends_on:
+           -  mysql
+    mysql:
+        image: mysql
+        networks:
+          - demored2
+        environment:
+          - MYSQL_ROOT_PASSWORD=denisse
+networks:
+  demored:
+  demored2:
+
+volumes:
+  vol01:  
+           
+        
+   

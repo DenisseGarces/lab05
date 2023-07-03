@@ -18,7 +18,8 @@ namespace Lab01.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "Version")]
+        [HttpGet()]
+        [Route("Version")]
         public String Version()
         {
             return "V13" ;

@@ -14,7 +14,7 @@ pipeline {
         sh "pwd"
         sh 'docker build -t $REGISTRY/$IMAGE:$VERSION .'
       }
-    }
+  }
     
     stage('Docker Push to Docker-hub'){
       steps{

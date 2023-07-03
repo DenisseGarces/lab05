@@ -28,7 +28,7 @@ pipeline {
       steps{
         sh 'docker stop $APPNAME'
         sh 'docker rm $APPNAME'        
-        sh 'docker run -d --name $APPNAME' -p $PORT:80 $REGISTRY/$APPNAME:$VERSION'
+        sh 'docker run -d --name $APPNAME -p $PORT:80 $REGISTRY/$APPNAME:$VERSION'
       }
     }
   }

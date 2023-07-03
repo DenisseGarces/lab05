@@ -1,6 +1,6 @@
-pipeline{
+pipeline {
   agent any
-  enviroment {    
+  environment {    
     APPNAME= "lab01"
     IMAGE= "lab01"
     VERSION= 11

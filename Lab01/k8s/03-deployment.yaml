@@ -4,11 +4,11 @@ kind: Deployment
 metadata:
   name: nginx-deployement  
   labels:
-    app: nginx
+    app: nginx-deployement
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-deployement
   replicas: 1
   strategy:
     rollingUpdate:

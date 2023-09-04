@@ -2,28 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployement  
+  name: nginx-deployment
   labels:
-    app: nginx-deployement
+    app: devops
 spec:
   selector:
     matchLabels:
-      app: nginx-deployement
-  replicas: 1
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
+      app: devops
+  replicas: 3
   template:
     metadata:
       labels:
-        app: myjob
+        app: devops
     spec:
       containers:
-      - name: myjob
-        image: myjob:latest
-        imagePullPolicy: IfNotPresent
+      - name: nginx
+        image: nginx:alpine
         resources:
           requests:
             cpu: 100m
@@ -47,29 +41,7 @@ spec:
           timeoutSeconds: 2
           successThreshold: 1
           failureThreshold: 3
-          periodSeconds: 10
-        env:
-        - name: ACCEPT_EULA
-          value: "Y"
-        - name: DB_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: myjob
-              key: DB_HOST
-        - name: DB_HOST
-          valueFrom:
-            secretKeyRef:
-              name: myjob
-              key: MSSQL_SA_PASSWORD
+          periodSeconds: 10        
         ports:
         - containerPort: 80
           name: myjob
-        volumeMounts:
-        - name: localtime
-          mountPath: /etc/localtime
-      volumes:
-        - name: localtime
-          hostPath:
-            path: /usr/share/zoneinfo/Asia/Taipei
-      restartPolicy: Always
----

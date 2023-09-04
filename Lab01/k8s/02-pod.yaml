@@ -25,7 +25,7 @@ spec:
     - name: DD_AGEN_HOST
       valueFrom:
         fieldRef:
-          fieldPath:
+          fieldPath: status.hostIP
     readinessProbe:
       httpGet:
         path: /

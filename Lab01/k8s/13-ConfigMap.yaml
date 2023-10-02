@@ -1,0 +1,15 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lab01-config
+  labels:
+    app: lab01
+data:
+  variable_entorno_1: "prueba1"
+  variable_entorno_2: "prueba2"
+  lab.properties: |
+    config1=valor1
+    config2=valor2
+    config3=valor3
+    config4=valor4

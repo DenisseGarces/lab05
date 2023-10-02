@@ -18,11 +18,39 @@ namespace Lab01.Controllers
             _logger = logger;
         }
 
+
         [HttpGet()]
         [Route("Version")]
         public String Version()
         {
-            return "V14" ;
+            return "V15";
+        }
+
+        [HttpGet()]
+        [Route("HostId")]
+        public String HostId()
+        {
+            return System.Net.Dns.GetHostName() + "\n";
+        }
+
+        [Route("GetEnv")]
+        public string GetEnv(string key)
+        {
+            return key + "=" +
+                (Environment.GetEnvironmentVariable(key) ?? "") + "\n";
+            
+        }
+
+        [HttpGet(Name = "GetWeatherForecast")]
+        public IEnumerable<WeatherForecast> Get()
+        {
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            })
+            .ToArray();
         }
 
         [Route("AddHistory")]
@@ -32,7 +60,7 @@ namespace Lab01.Controllers
 
             try
             {
-                var path = "/var/logs";
+                var path = "/var/Lab/logs";
 
                 if (!Directory.Exists(path))
                 {
